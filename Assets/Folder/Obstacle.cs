@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bukkuground : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
-    private float speed = 30;
+    private float speed = 10;
     // Start is called before the first frame update
     void Start()
     {
