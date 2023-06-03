@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] float speed = 15;
     // Start is called before the first frame update
     Rigidbody rb;
     [SerializeField] float gravituModifier;
@@ -11,12 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isOnGround;
     public bool gameOver;//何も書かなければprivateです
     Animator playerAnim;
+    [SerializeField] ParticleSystem explosionParticle;
+    [SerializeField] ParticleSystem dirtParticle;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Physics.gravity *= gravituModifier;
         playerAnim = GetComponent<Animator>();
+        dirtParticle.Play();
     }
 
     // Update is called once per frame
@@ -44,6 +48,9 @@ public class PlayerController : MonoBehaviour
             gameOver = true;
             playerAnim.SetBool("Death_b",true);
             playerAnim.SetInteger("DeathType_int", 1);
+            explosionParticle.Play();
+            dirtParticle.Stop();
+            speed = 0;
         }
     }
 }
